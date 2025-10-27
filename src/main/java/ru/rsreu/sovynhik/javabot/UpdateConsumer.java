@@ -11,8 +11,10 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardRow;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.TelegramClient;
 
@@ -42,12 +44,39 @@ public class UpdateConsumer implements LongPollingSingleThreadUpdateConsumer {
 
             if (messageText.equals("/start")) {
                 sendMainMenu(chatId);
+            } else if (messageText.equals("/keyboard")) {
+                sendMessageReplayKeyboard(chatId);
+            } else if (messageText.equals("Hello")) {
+                sendMyName(chatId, update.getMessage().getFrom());
+            } else if (messageText.equals("Image")) {
+                sendImage(chatId);
             } else {
                 sendMessage(chatId, "I don't understand you!");
             }
         } else if (update.hasCallbackQuery()) {
             handlerCallbackQuery(update.getCallbackQuery());
         }
+    }
+
+    @SneakyThrows
+    private void sendMessageReplayKeyboard(Long chatId) {
+        SendMessage message = SendMessage.builder()
+                .chatId(chatId.toString())
+                .text("This is a replay message: ")
+                .build();
+
+//        List<KeyboardRow> keyboardRows = new ArrayList<>();
+//        KeyboardRow rows = new KeyboardRow("Hello", "Image");
+//        keyboardRows.add(rows);
+
+        List<KeyboardRow> keyboardRows = List.of(
+                new KeyboardRow("Hello", "Image")
+        );
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(keyboardRows);
+        message.setReplyMarkup(replyKeyboardMarkup);
+
+        telegramClient.execute(message);
     }
 
     private void handlerCallbackQuery(CallbackQuery callbackQuery) {
