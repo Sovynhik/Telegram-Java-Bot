@@ -65,10 +65,6 @@ public class UpdateConsumer implements LongPollingSingleThreadUpdateConsumer {
                 .text("This is a replay message: ")
                 .build();
 
-//        List<KeyboardRow> keyboardRows = new ArrayList<>();
-//        KeyboardRow rows = new KeyboardRow("Hello", "Image");
-//        keyboardRows.add(rows);
-
         List<KeyboardRow> keyboardRows = List.of(
                 new KeyboardRow("Hello", "Image")
         );
@@ -170,6 +166,5 @@ public class UpdateConsumer implements LongPollingSingleThreadUpdateConsumer {
         message.setReplyMarkup(markup);
 
         telegramClient.execute(message);
-
     }
 }
