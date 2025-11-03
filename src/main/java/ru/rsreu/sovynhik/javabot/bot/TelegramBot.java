@@ -1,21 +1,24 @@
-package ru.rsreu.sovynhik.javabot;
+package ru.rsreu.sovynhik.javabot.bot;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.longpolling.interfaces.LongPollingUpdateConsumer;
 import org.telegram.telegrambots.longpolling.starter.SpringLongPollingBot;
+import ru.rsreu.sovynhik.javabot.config.BotConfig;
 
 @Component
 public class TelegramBot implements SpringLongPollingBot {
 
+    private final BotConfig botConfig;
     private final UpdateConsumer updateConsumer;
 
-    public TelegramBot(UpdateConsumer updateConsumer) {
+    public TelegramBot(BotConfig botConfig, UpdateConsumer updateConsumer) {
+        this.botConfig = botConfig;
         this.updateConsumer = updateConsumer;
     }
 
     @Override
     public String getBotToken() {
-        return "8464271312:AAHeP8VqcChMGcLoxNVZ6IQX3N7NoL_1AKk";
+        return botConfig.getBotToken();
     }
 
     @Override
