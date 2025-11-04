@@ -1,13 +1,12 @@
-package ru.rsreu.sovynhik.javabot.bot;
+package ru.rsreu.sovynhik.froggybot.bot;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.longpolling.util.LongPollingSingleThreadUpdateConsumer;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.rsreu.sovynhik.javabot.service.BotService;
-import ru.rsreu.sovynhik.javabot.util.KeyboardFactory;
+import ru.rsreu.sovynhik.froggybot.service.BotService;
+import ru.rsreu.sovynhik.froggybot.util.KeyboardFactory;
 
 @Component
 @RequiredArgsConstructor

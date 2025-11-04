@@ -1,4 +1,4 @@
-package ru.rsreu.sovynhik.javabot.config;
+package ru.rsreu.sovynhik.froggybot.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

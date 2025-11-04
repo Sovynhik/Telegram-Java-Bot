@@ -1,4 +1,4 @@
-package ru.rsreu.sovynhik.javabot.util;
+package ru.rsreu.sovynhik.froggybot.util;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
